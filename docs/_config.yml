@@ -1,0 +1,27 @@
+remote_theme: ddc-java/ddc-day
+
+title: Clock Angles
+description: "Compute the angular positions of the hour & minute hands of a clock."
+
+author:
+  name: Nick Bennett
+  email: nick@nickbenn.com
+
+heading_navigator:
+  enabled: true
+page_navigator:
+  enabled: false
+titles_from_headings:
+  enabled: false
+  
+assignment:
+  url: https://classroom.github.com/a/xi0d21wL
+  format: Gradle Java project
+  value:
+    basic:
+      implementation: 9
+      tests: 5
+    stretch:
+      implementation: 11
+      tests: 5
+  
