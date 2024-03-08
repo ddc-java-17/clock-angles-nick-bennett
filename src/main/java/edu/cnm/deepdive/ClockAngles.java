@@ -24,6 +24,13 @@ package edu.cnm.deepdive;
  */
 public abstract class ClockAngles {
 
+  private static final int MINUTES_PER_HOUR = 60;
+  private static final int MINUTES_PER_REVOLUTION = MINUTES_PER_HOUR;
+  private static final int DEGREES_PER_REVOLUTION = 360;
+  private static final int HOURS_PER_REVOLUTION = 12;
+  private static final int HOUR_HAND_DEGREES_PER_HOUR = DEGREES_PER_REVOLUTION / HOURS_PER_REVOLUTION;
+  private static final int MINUTE_HAND_DEGREES_PER_MINUTE = DEGREES_PER_REVOLUTION / MINUTES_PER_REVOLUTION;
+
   private ClockAngles() {
     // NOTE: There is NO need to do anything with this constructor! The methods you will implement
     // in this class are static; thus, there is no need to create instances of this class.
@@ -38,7 +45,11 @@ public abstract class ClockAngles {
    * @return        Angle (in degrees) to which hour hand is oriented.
    */
   public static double hourHandDegrees(int hours, double minutes) {
-    throw new UnsupportedOperationException("Not yet implemented"); // TODO Implement as specified.
+    double effectiveHours = (hours + minutes / MINUTES_PER_HOUR) % HOURS_PER_REVOLUTION;
+    effectiveHours = (effectiveHours < 0)
+        ? (effectiveHours + HOURS_PER_REVOLUTION)
+        : effectiveHours;
+    return effectiveHours * HOUR_HAND_DEGREES_PER_HOUR;
   }
 
   /**
@@ -49,7 +60,11 @@ public abstract class ClockAngles {
    * @return        Angle (in degrees) to which minute hand is oriented.
    */
   public static double minuteHandDegrees(double minutes) {
-    throw new UnsupportedOperationException("Not yet implemented"); // TODO Implement as specified.
+    double effectiveMinutes = minutes % MINUTES_PER_REVOLUTION;
+    effectiveMinutes = (effectiveMinutes < 0)
+        ? (effectiveMinutes + MINUTES_PER_REVOLUTION)
+        : effectiveMinutes;
+    return effectiveMinutes * MINUTE_HAND_DEGREES_PER_MINUTE;
   }
 
 }
